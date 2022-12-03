@@ -12,9 +12,15 @@ app.use(express.urlencoded({ extended: true }));
 
 // servidor
 
-app.use(express.static("public"));
 app.use("/api/productos", ProductosRouter);
 app.use("/api/carrito", CarritoRouter);
+
+app.use((req, res, next) => {
+  res.status(404).send({
+    error: "-2",
+    description: `ruta '${req.url}' método '${req.method}' no implementado`,
+  });
+});
 
 const PORT = process.env.PORT || 8080;
 const server = app.listen(PORT, () => {
