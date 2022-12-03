@@ -1,3 +1,4 @@
+const cors = require("cors");
 const express = require("express");
 const ProductosRouter = require("./routes/productos.Router");
 const CarritoRouter = require("./routes/carrito.Router");
@@ -5,6 +6,7 @@ const CarritoRouter = require("./routes/carrito.Router");
 const app = express();
 
 // Middleware
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
